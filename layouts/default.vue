@@ -2,9 +2,10 @@
   <div>
     <Header />
     <Nuxt />
+    <Footer />
   </div>
 </template>
 
 <style>
-  @import '../assets/styles/tachyons.css';
+
 </style>

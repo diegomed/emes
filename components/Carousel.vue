@@ -17,11 +17,8 @@
       
 
       <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-      <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt
-          a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.
-        </p>
+      <b-carousel-slide img-alt="Blank image"
+      img-src="https://emesdistribuciones.com.uy/images/banner%20home%20tomorrowland2.jpg?crc=4109423964">
       </b-carousel-slide>
     </b-carousel>
   </div>

@@ -1,8 +1,7 @@
 <template>
     <div>
         <b-card
-            title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
+            img-src="https://geant.vteximg.com.br/arquivos/ids/194726-1000-1000/604891.jpg?v=636312984927700000"
             img-alt="Image"
             img-top
             tag="article"
@@ -10,10 +9,14 @@
             class="mb-2"
         >
             <b-card-text>
-                Some quick example text to build on the card title and make up the bulk of the card's content.
+                <div class="f7 silver">Bebidas</div>
+                <h4>Vino Santa Teresa</h4>
             </b-card-text>
 
-            <b-button href="#" variant="primary">Ver</b-button>
+            <div class="d-flex justify-content-between">
+                <div class="font-weight-bold">$220</div>
+                <a href="#" class="d-flex align-items-center bg-primary rounded-circle no-color button-layout justify-content-center text-decoration-none"><span class="text-white" style="margin-top: -5px">+</span></a>
+            </div>
         </b-card>
     </div>
 
@@ -26,5 +29,13 @@ export default {
 </script>
 
 <style>
+    .no-color:hover {
+        color: white;
+    }
 
+    .button-layout {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
 </style>
