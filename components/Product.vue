@@ -9,12 +9,12 @@
             class="mb-2"
         >
             <b-card-text>
-                <div class="f7 silver">Bebidas</div>
-                <h4>Vino Santa Teresa</h4>
+                <div class="product__category text-uppercase text-black-50">Bebidas</div>
+                <h5>Vino Santa Teresa</h5>
             </b-card-text>
 
             <div class="d-flex justify-content-between">
-                <div class="font-weight-bold">$220</div>
+                <div >$<span class="font-weight-bold">200</span></div>
                 <a href="#" class="d-flex align-items-center bg-primary rounded-circle no-color button-layout justify-content-center text-decoration-none"><span class="text-white" style="margin-top: -5px">+</span></a>
             </div>
         </b-card>
@@ -31,6 +31,10 @@ export default {
 <style>
     .no-color:hover {
         color: white;
+    }
+
+    .product__category {
+        font-size: .75rem;
     }
 
     .button-layout {
