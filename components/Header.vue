@@ -23,13 +23,14 @@
 
                 <b-collapse id="nav-collapse" is-nav>
                     <b-navbar-nav>
-                        <b-nav-item class="min-font" href="#">Cetegorías</b-nav-item>
+                        <b-nav-item v-b-toggle="'collapse-2'" class="min-font">Categorías</b-nav-item>
                         <b-nav-item class="min-font" href="#">Conócenos</b-nav-item>
                         <b-nav-item class="min-font" href="#">Contacto</b-nav-item>
                     </b-navbar-nav>
                 </b-collapse>
             </div>
         </b-navbar>
+        <Categories/>
     </div>
 </template>
 
