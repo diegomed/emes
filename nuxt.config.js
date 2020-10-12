@@ -17,7 +17,12 @@ export default {
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
+  // modules: [
+  //   '@woocommerce/woocommerce-rest-api',
+  // ],
+
   plugins: [
+    '~/plugins/woocommerce.server'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

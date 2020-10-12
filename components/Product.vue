@@ -9,23 +9,43 @@
             class="mb-2"
         >
             <b-card-text>
-                <div class="product__category text-uppercase text-black-50">Bebidas</div>
-                <h5>Vino Santa Teresa</h5>
+                <div class="product__category text-uppercase text-black-50">{{product.categories[0].name}}</div>
+                <h5>
+                    <a :href="`/producto/${product.slug}`">{{product.name}}</a>
+                </h5>
             </b-card-text>
 
             <div class="d-flex justify-content-between">
-                <div >$<span class="font-weight-bold">200</span></div>
-                <a href="#" class="d-flex align-items-center bg-primary rounded-circle no-color button-layout justify-content-center text-decoration-none"><span class="text-white" style="margin-top: -5px">+</span></a>
+                <div >$<span class="font-weight-bold">{{product.price}}</span></div>
+                <a :href="`/producto/${product.slug}`" class="d-flex align-items-center bg-primary rounded-circle no-color button-layout justify-content-center text-decoration-none"><span class="text-white" style="margin-top: -5px">+</span></a>
             </div>
         </b-card>
     </div>
 
 </template>
 
-<script>
-export default {
-
-}
+<script lang="ts">
+    import Vue, { PropOptions } from 'vue';
+    export interface Product {
+            name: string; 
+            description: string;
+            price: string;
+            slug: string;
+            images: {
+              name: string;
+              src: string;
+            }[];
+            categories: any[];
+          }
+    export default Vue.extend ({
+        
+        props: {
+            product: {
+                type: Object,
+                required: true
+            } as PropOptions<Product>
+        },
+    })
 </script>
 
 <style>

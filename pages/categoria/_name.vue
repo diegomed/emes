@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bg-primary py-3">
-      <h3 class="p-3 text-white text-center font-weight-normal">Categoría: <b>Bebidas</b></h3>
+      <h3 class="p-3 text-white text-center font-weight-normal">Categoría: <b>{{category.name}}</b></h3>
     </div>
     <b-container class="mt-5">
       <b-row>
@@ -15,20 +15,8 @@
         </b-col>
         <b-col cols="12" md="8" lg="9">
           <b-row>
-            <b-col cols="6" md="4" lg="3" >
-              <Product/>
-            </b-col>
-            <b-col cols="6" md="4" lg="3" >
-              <Product/>
-            </b-col>
-            <b-col cols="6" md="4" lg="3" >
-              <Product/>
-            </b-col>
-            <b-col cols="6" md="4" lg="3" >
-              <Product/>
-            </b-col>
-            <b-col cols="6" md="4" lg="3" >
-              <Product/>
+            <b-col v-for="item in products" :key="item.id" cols="6" md="4" lg="3" >
+              <Product :product="item"/>
             </b-col>
           </b-row>
         </b-col>
@@ -40,27 +28,35 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  // import WooCommerce from 'middleware/woocommerce';
-
-    
-
-    const Categories = Vue.extend({
+  interface Category {
+    id: number;
+    name: string;
+    slug: string;
+  }
+  const Categories = Vue.extend({
+    asyncData({params, $api}) {
+      return $api.get(
+        `products/categories?slug=${params.name}`
+      ).then( (categoryData: {data: Category[]}) => {
+        console.log(categoryData.data)
+        return $api.get(`products?category=${categoryData.data[0].id}`).then(
+          (productList: any) => {
+            return {
+              category: categoryData.data[0],
+              products: productList.data
+            }
+          }
+        )
+      })
+    },
       data() {
         return {
-          prueba: 'Hola Mundo'
+          category: {}  as Category,
+          products: []
         } 
       },
       methods: {
         init(): void {
-          // WooCommerce.get("products/categories")
-          // .then((response: any) => {
-          //     console.log(response.data);
-          //     // return res.status(200).json(response.data);
-          // })
-          // .catch((error: any) => {
-          //     console.log(error.response.data);
-          //     // return res.status(400).json(error.response.data);
-          // });
         }
       },
       created() {
