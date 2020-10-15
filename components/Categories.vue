@@ -1,30 +1,33 @@
 <template>
-    <div>
-        <b-collapse id="collapse-2">
-            <b-card class="d-flex flex-row flex-wrap">
-                <div class="d-flex flex-row flex-wrap">
-                    <div class="w-25">link 1</div>
-                    <div class="w-25">link 2</div>
-                    <div class="w-25">link 3</div>
-                    <div class="w-25">link 4</div>
-                    <div class="w-25">link 5</div>
-                    <div class="w-25">link 6</div>
-                    <div class="w-25">link 7</div>
-                    <div class="w-25">link 8</div>
-                    <div class="w-25">link 9</div>
-                    <div class="w-25">link 10</div>
-                    <div class="w-25">link 11</div>
-                    <div class="w-25">link 12</div>
-                </div>
-            </b-card>
-        </b-collapse>
-    </div>
+  <b-dropdown id="dropdown-1" text="Categorías" class="m-md-2">
+    <b-dropdown-item v-for=" category in categories" :key="category.id" :href="`/categoria/${category.slug}`">{{category.name}}</b-dropdown-item>
+  </b-dropdown>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+    import Vue from 'vue';
+    import { Category } from '~/interfaces/interfaces';
+    import api from '~/core/api';
 
-}
+    export default Vue.extend({
+        created(){
+            api.get("products/categories")
+            .then((response: any) => {
+                this.categories = response.data;
+                // return res.status(200).json(response.data);
+            })
+            .catch((error: any) => {
+                // console.log('qq')
+                console.log(error.response.data);
+                // return res.status(400).json(error.response.data);
+            });
+        },
+        data() {
+            return {
+                categories: [] as Category[]
+            }
+        }
+    })
 </script>
 
 <style>

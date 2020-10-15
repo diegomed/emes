@@ -8,29 +8,24 @@
         </div>
         <b-navbar toggleable="lg" class="border-bottom">
             <div class="container">
-                <b-navbar-brand href="#">
+                <b-navbar-brand href="/">
                     <img src="~/assets/images/logo.png" />
                 </b-navbar-brand>
                 <b-navbar-nav>
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light" placeholder="Encontrá tu producto" aria-label="Encontrá tu producto" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">Buscar</button>
-                        </div>
-                    </div>
+                    <Search/>
                 </b-navbar-nav>
                 <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
                 <b-collapse id="nav-collapse" is-nav>
                     <b-navbar-nav>
-                        <b-nav-item v-b-toggle="'collapse-2'" class="min-font">Categorías</b-nav-item>
+                        <Categories/>
                         <b-nav-item class="min-font" href="#">Conócenos</b-nav-item>
                         <b-nav-item class="min-font" href="#">Contacto</b-nav-item>
                     </b-navbar-nav>
                 </b-collapse>
             </div>
         </b-navbar>
-        <Categories/>
+        
     </div>
 </template>
 

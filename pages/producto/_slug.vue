@@ -27,19 +27,21 @@
 
 <script lang="ts">
     import Vue, {PropOptions} from 'vue';  
+    import { Product } from '~/interfaces/interfaces';
+
     const ProductView = Vue.extend({
-      head() {
+      head(): {title: string; meta: any[];} {
         return {
           title: this.product.name,
           meta: [
-            // { hid: 'description', id: 'description', name: 'description', content: this.product.description }
+            { hid: 'description', id: 'description', name: 'description', content: this.product.description }
           ]
         }
       },
       asyncData({params, $api}) {
           return $api.get(`products?slug=${params.slug}`)
           .then((response: any) => {
-            console.log(response.data[0])
+            // console.log(response.data[0])
             return { product: response.data[0] }
               // return res.status(200).json(response.data);
           })
@@ -48,7 +50,7 @@
               // return res.status(400).json(error.response.data);
           });
       },
-      data() {
+      data()  {
         return {
           product: {} as Product 
         } 

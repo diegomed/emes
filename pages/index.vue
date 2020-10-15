@@ -6,7 +6,7 @@
         <h3 class="p-3 text-black-50">Productos destacados</h3>
       </b-row>
       <b-row>
-        <b-col>
+        <!-- <b-col>
           <Product/>
         </b-col>
         <b-col>
@@ -20,7 +20,7 @@
         </b-col>
         <b-col>
           <Product/>
-        </b-col>
+        </b-col> -->
       </b-row>
     </b-container>
   </div>

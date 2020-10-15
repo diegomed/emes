@@ -5,13 +5,12 @@
             img-alt="Image"
             img-top
             tag="article"
-            style="max-width: 20rem;"
             class="mb-2"
         >
             <b-card-text>
                 <div class="product__category text-uppercase text-black-50">{{product.categories[0].name}}</div>
                 <h5>
-                    <a :href="`/producto/${product.slug}`">{{product.name}}</a>
+                    <a he :href="`/producto/${product.slug}`">{{product.name}}</a>
                 </h5>
             </b-card-text>
 
@@ -26,19 +25,8 @@
 
 <script lang="ts">
     import Vue, { PropOptions } from 'vue';
-    export interface Product {
-            name: string; 
-            description: string;
-            price: string;
-            slug: string;
-            images: {
-              name: string;
-              src: string;
-            }[];
-            categories: any[];
-          }
+    import { Product } from '~/interfaces/interfaces';
     export default Vue.extend ({
-        
         props: {
             product: {
                 type: Object,

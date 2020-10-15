@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bg-primary py-3">
-      <h3 class="p-3 text-white text-center font-weight-normal">Categoría: <b>{{category.name}}</b></h3>
+      <h3 class="p-3 text-white text-center font-weight-normal">Búsqueda: <b>{{searchKey}}</b></h3>
     </div>
     <b-container class="mt-5">
       <b-row>
@@ -19,7 +19,7 @@
               <Product :product="item"/>
             </b-col>
             <b-col  v-if="!products.length">
-              <h4 class="text-secondary text-center p-4">No se encontraron productos en la categoría {{category.name}}</h4>
+              <h4 class="text-secondary text-center p-4">No se encontraron productos relacionadas para: {{searchKey}}</h4>
             </b-col>
           </b-row>
         </b-col>
@@ -31,37 +31,32 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import { Category } from '~/interfaces/interfaces';
+  import { Category, Product } from '~/interfaces/interfaces';
 
 
   const Categories = Vue.extend({
     head(): {title: string; meta: any[];} {
       return {
-        title: this.category.name,
+        title: this.searchKey,
         meta: [
-          { hid: 'description', id: 'description', name: 'description', content: this.category.description }
+          { hid: 'description', id: 'description', name: 'description', content: this.searchKey }
         ]
       }
     },
     asyncData({params, $api}) {
-      return $api.get(
-        `products/categories?slug=${params.name}`
-      ).then( (categoryData: {data: Category[]}) => {
-        // console.log(categoryData.data)
-        return $api.get(`products?category=${categoryData.data[0].id}`).then(
+        return $api.get(`products?search=${params.search}`).then(
           (productList: any) => {
             return {
-              category: categoryData.data[0],
-              products: productList.data
+                searchKey: params.search,
+                products: productList.data
             }
           }
         )
-      })
     },
     data() {
       return {
-        category: {}  as Category,
-        products: []
+        searchKey: '' as string,
+        products: [] as Product[]
       } 
     },
     methods: {
