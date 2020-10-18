@@ -16,3 +16,14 @@ export interface Category {
   slug: string;
   description: string;
 }
+
+export interface Pages {
+  id: number;
+  slug: string;
+  link: string;
+  _embbeded: {
+    "wp:featuremedia": {
+      source_url: string;
+    }[]
+  }
+}

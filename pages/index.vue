@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Carousel/>
+    <Carousel :pages="pages" />
     <b-container>
       <b-row>
         <h3 class="p-3 text-black-50">Productos destacados</h3>
@@ -28,6 +28,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
+import { Pages } from '~/interfaces/interfaces';
   // import WooCommerce from 'middleware/woocommerce';
 
     
@@ -35,8 +36,18 @@
     const App = Vue.extend({
       data() {
         return {
-          prueba: 'Hola Mundo'
+          prueba: 'Hola Mundo',
+          pages: [] as Pages[]
         } 
+      },
+      asyncData({$axios}) {
+        return $axios.get('pages?parent=13&_embed')
+          .then((res: {data: Pages[]}) => {
+            return { pages: res.data };
+          })
+          .catch((err: any) => {
+            console.error(err.response.data);
+          });
       },
       methods: {
         init(): void {

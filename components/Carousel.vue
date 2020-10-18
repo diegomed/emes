@@ -17,28 +17,43 @@
       
 
       <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-      <b-carousel-slide img-alt="Blank image"
-      img-src="https://emesdistribuciones.com.uy/images/banner%20home%20tomorrowland2.jpg?crc=4109423964">
+      <b-carousel-slide v-for="(slide, index) in pages" img-alt="Blank image"
+        :img-src="slide._embedded['wp:featuremedia'][0].source_url"
+        :key="index">
       </b-carousel-slide>
     </b-carousel>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { PropOptions } from 'vue';
+  import { Pages } from '~/interfaces/interfaces';
   export default {
-    data() {
+    data(): {
+      slide: number;
+      sliding: boolean | null;
+    } {
       return {
         slide: 0,
         sliding: null
       }
     },
+    props: {
+      pages: {
+        type: Array,
+        required: true
+      } as PropOptions<Pages[]>
+    },
     methods: {
-      onSlideStart(slide) {
+      onSlideStart(slide: boolean): void {
         this.sliding = true
       },
-      onSlideEnd(slide) {
+      onSlideEnd(slide: boolean): void {
         this.sliding = false
       }
-    }
+    },
+    // created() {
+    //   console.log(this.pages);
+    // }
   }
 </script>

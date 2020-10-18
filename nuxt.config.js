@@ -22,7 +22,8 @@ export default {
   // ],
 
   plugins: [
-    '~/plugins/woocommerce.server'
+    '~/plugins/woocommerce.server',
+    '~/plugins/axios.server'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
