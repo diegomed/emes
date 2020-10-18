@@ -18,7 +18,7 @@
 
       <!-- Slide with blank fluid image to maintain slide aspect ratio -->
       <b-carousel-slide v-for="(slide, index) in pages" img-alt="Blank image"
-        :img-src="slide._embedded['wp:featuremedia'][0].source_url"
+        :img-src="slide._embedded['wp:featuredmedia'][0].source_url"
         :key="index">
       </b-carousel-slide>
     </b-carousel>

@@ -22,7 +22,7 @@ export interface Pages {
   slug: string;
   link: string;
   _embbeded: {
-    "wp:featuremedia": {
+    "wp:featuredmedia": {
       source_url: string;
     }[]
   }

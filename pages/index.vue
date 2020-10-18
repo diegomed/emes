@@ -28,10 +28,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-import { Pages } from '~/interfaces/interfaces';
-  // import WooCommerce from 'middleware/woocommerce';
-
-    
+  import { Pages } from '~/interfaces/interfaces';    
 
     const App = Vue.extend({
       data() {
@@ -41,7 +38,7 @@ import { Pages } from '~/interfaces/interfaces';
         } 
       },
       asyncData({$axios}) {
-        return $axios.get('pages?parent=13&_embed')
+        return $axios.get('pages?parent=17&_embed')
           .then((res: {data: Pages[]}) => {
             return { pages: res.data };
           })

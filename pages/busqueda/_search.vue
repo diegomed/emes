@@ -8,9 +8,7 @@
         <b-col  cols="12" md="4" lg="3">
           <div>
             <h5>Categorías</h5>
-            <ul>
-              <li>Link</li>
-            </ul>
+            <CategoriesProductList :categories="categoryList"/>
           </div>
         </b-col>
         <b-col cols="12" md="8" lg="9">
@@ -43,20 +41,20 @@
         ]
       }
     },
-    asyncData({params, $api}) {
-        return $api.get(`products?search=${params.search}`).then(
-          (productList: any) => {
-            return {
-                searchKey: params.search,
-                products: productList.data
-            }
-          }
-        )
+    async asyncData({params, $api}) {
+      const searchResult: {data: Product[]} = await $api.get(`products?search=${params.search}`);
+      const categoryList: {data: Category[]} = await $api.get(`products/categories`);
+      return {
+        searchKey: params.search,
+        products: searchResult.data,
+        categoryList: categoryList.data
+      }
     },
     data() {
       return {
         searchKey: '' as string,
-        products: [] as Product[]
+        products: [] as Product[],
+        categoryList: [] as Category[]
       } 
     },
     methods: {

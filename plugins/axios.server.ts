@@ -10,6 +10,8 @@ declare module '@nuxt/types' {
 }
 
 export default function (context: Context, inject: any) {
-    const instance = axios.create({baseURL:"http://localhost/emes/wp-json/wp/v2/"})
-    inject('axios', axios);
+    const instance = axios.create({
+      baseURL:"http://localhost/emes/wp-json/wp/v2/"
+    })
+    inject('axios', instance);
 }

@@ -8,9 +8,7 @@
         <b-col  cols="12" md="4" lg="3">
           <div>
             <h5>Categorías</h5>
-            <ul>
-              <li>Link</li>
-            </ul>
+            <CategoriesProductList :categories="categoryList"/>
           </div>
         </b-col>
         <b-col cols="12" md="8" lg="9">
@@ -31,7 +29,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import { Category } from '~/interfaces/interfaces';
+  import { Category, Product } from '~/interfaces/interfaces';
 
 
   const Categories = Vue.extend({
@@ -43,25 +41,21 @@
         ]
       }
     },
-    asyncData({params, $api}) {
-      return $api.get(
-        `products/categories?slug=${params.name}`
-      ).then( (categoryData: {data: Category[]}) => {
-        // console.log(categoryData.data)
-        return $api.get(`products?category=${categoryData.data[0].id}`).then(
-          (productList: any) => {
-            return {
+    async asyncData({params, $api}) {
+      const categoryData: {data: Category[]} = await $api.get(`products/categories?slug=${params.name}`);
+      const productList: {data: Product[]} = await $api.get(`products?category=${categoryData.data[0].id}`);
+      const categoryList: {data: Category[]} = await $api.get(`products/categories`);
+      return {
               category: categoryData.data[0],
-              products: productList.data
+              products: productList.data,
+              categoryList: categoryList.data
             }
-          }
-        )
-      })
     },
     data() {
       return {
         category: {}  as Category,
-        products: []
+        products: [],
+        categoryList: [] as Category[]
       } 
     },
     methods: {
