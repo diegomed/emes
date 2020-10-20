@@ -1,7 +1,8 @@
 <template>
     <ul>
         <li v-for="category in filterCategories(categories)" :key="category.id">
-            <a :href="`/categoria/${category.slug}`">{{category.name}}</a>
+            <n-link :to="`${parent}/${category.slug}`" no-prefetch>{{category.name}}</n-link>
+            <!-- <a ></a> -->
         </li>
     </ul>
 </template>
@@ -13,6 +14,10 @@
 
     export default Vue.extend({
         props: {
+            parent: {
+                type: String,
+                required: false
+            } as PropOptions<string>,
             categories: {
                 type: Array,
                 required: true

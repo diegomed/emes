@@ -15,6 +15,7 @@ export interface Category {
   name: string;
   slug: string;
   description: string;
+  parent: number;
 }
 
 export interface Pages {

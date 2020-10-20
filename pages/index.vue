@@ -37,13 +37,14 @@
           pages: [] as Pages[]
         } 
       },
-      asyncData({$axios}) {
-        return $axios.get('pages?parent=17&_embed')
+      asyncData({$wp}) {
+        console.log($wp, 'wp')
+        return $wp.get('pages?parent=17&_embed')
           .then((res: {data: Pages[]}) => {
             return { pages: res.data };
           })
           .catch((err: any) => {
-            console.error(err.response.data);
+            // console.error(err.response.data);
           });
       },
       methods: {

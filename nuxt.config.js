@@ -22,8 +22,8 @@ export default {
   // ],
 
   plugins: [
-    '~/plugins/woocommerce.server',
-    '~/plugins/axios.server'
+    '~/plugins/woocommerce',
+    '~/plugins/axios'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -38,10 +38,12 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    // '@woocommerce/woocommerce-rest-api',
+    '@nuxtjs/axios'
   ],
-
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+
   }
 }

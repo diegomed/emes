@@ -2,21 +2,21 @@
     <nav class="py-5" aria-label="..." v-if="totalPages > 0">
         <ul class="pagination justify-content-center">
             <li class="page-item" v-bind:class="{disabled: next().currentPage === 1}">
-                <a class="page-link" :aria-disabled="prev().currentPage === 1" :href="prev().path+'?'+prev().query">Anterior</a>
+                <nuxt-link class="page-link" :aria-disabled="prev().currentPage === 1" :to="prev().path+'?'+prev().query">Anterior</nuxt-link>
             </li>
             <li class="page-item" v-for="page in createPages(totalPages)" :key="page.number" v-bind:class="{active: isActive(page.currentPage, page.number)}">
                 <span v-if="page.currentPage == page.number" class="page-link">
                     {{page.number}}
                     <span class="sr-only">(current)</span>
                 </span>
-                <a v-else class="page-link"  :href="page.path+'?'+page.query">{{page.number}}</a>
+                <nuxt-link v-else class="page-link" :prefetch="false" :to="page.path+'?'+page.query">{{page.number}}</nuxt-link>
+                <!-- <a v-else class="page-link"  :href="page.path+'?'+page.query"></a> -->
             </li>
             <li class="page-item" v-bind:class="{disabled: prev().currentPage === totalPages}">
-                <a class="page-link" :aria-disabled="prev().currentPage === totalPages" :href="next().path+'?'+next().query">Siguiente</a>
+                <nuxt-link class="page-link" :aria-disabled="prev().currentPage === totalPages" :to="next().path+'?'+next().query">Siguiente</nuxt-link>
             </li>
         </ul>
     </nav>
-
 </template>
 
 <script lang="ts">
